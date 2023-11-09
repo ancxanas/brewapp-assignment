@@ -21,11 +21,13 @@ This is a RESTful API built using Node.js and MongoDB that enables users to mana
 
 ### Example Usage
 
+To retrieve all books:
+
 `GET /api/books`
 
 To retrieve a specific book by its ID, send a GET request to the /books/:id endpoint, replacing :id with the book's ID:
 
-GET /api/books/12345
+`GET /api/books/12345`
 
 To create a new book, send a POST request to the /books endpoint with a JSON object containing the book's title, author, and summary:
 
