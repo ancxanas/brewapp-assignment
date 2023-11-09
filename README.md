@@ -29,7 +29,7 @@ To retrieve a specific book by its ID, send a GET request to the /books/:id endp
 
 `GET /api/books/12345`
 
-To create a new book, send a POST request to the /books endpoint with a JSON object containing the book's title, author, and summary:
+To create a new book, send a POST request to the /api/books endpoint with a JSON object containing the book's title, author, and summary:
 
 ```
 POST /api/books
