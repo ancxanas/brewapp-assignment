@@ -15,7 +15,7 @@ booksRouter.get('/:id', async (req, res) => {
   if (book) {
     res.json(book);
   } else {
-    res.status(400).end();
+    res.status(404).json({ error: 'book does not exist' });
   }
 });
 
@@ -36,17 +36,27 @@ booksRouter.post('/', async (req, res) => {
 booksRouter.put('/:id', async (req, res) => {
   const { title, author, summary } = req.body;
 
-  const book = {
+  const bookDetails = {
     title,
     author,
     summary,
   };
 
-  const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {
-    new: true,
-  });
+  const book = await Book.findById(req.params.id);
 
-  res.json(updatedBook);
+  if (book) {
+    const updatedBook = await Book.findByIdAndUpdate(
+      req.params.id,
+      bookDetails,
+      {
+        new: true,
+      },
+    );
+
+    res.json(updatedBook);
+  } else {
+    res.status(404).json({ error: 'book does not exist' });
+  }
 });
 
 booksRouter.delete('/:id', async (req, res) => {
