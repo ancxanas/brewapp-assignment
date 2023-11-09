@@ -1,63 +1,63 @@
-import { Router } from 'express'
-import Book from '../models/book'
+import { Router } from 'express';
+import Book from '../models/book';
 
-const booksRouter = Router()
+const booksRouter = Router();
 
 booksRouter.get('/', async (_req, res) => {
-  const books = await Book.find({})
+  const books = await Book.find({});
 
-  res.json(books)
-})
+  res.json(books);
+});
 
 booksRouter.get('/:id', async (req, res) => {
-  const book = await Book.findById(req.params.id)
+  const book = await Book.findById(req.params.id);
 
   if (book) {
-    res.json(book)
+    res.json(book);
   } else {
-    res.status(400).end()
+    res.status(400).end();
   }
-})
+});
 
 booksRouter.post('/', async (req, res) => {
-  const { title, author, summary } = req.body
+  const { title, author, summary } = req.body;
 
   const book = new Book({
     title,
     author,
     summary,
-  })
+  });
 
-  let savedBook = await book.save()
+  const savedBook = await book.save();
 
-  res.status(201).json(savedBook)
-})
+  res.status(201).json(savedBook);
+});
 
 booksRouter.put('/:id', async (req, res) => {
-  const { title, author, summary } = req.body
+  const { title, author, summary } = req.body;
 
   const book = {
     title,
     author,
     summary,
-  }
+  };
 
   const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {
     new: true,
-  })
+  });
 
-  res.json(updatedBook)
-})
+  res.json(updatedBook);
+});
 
 booksRouter.delete('/:id', async (req, res) => {
-  const book = await Book.findById(req.params.id)
+  const book = await Book.findById(req.params.id);
 
   if (book) {
-    await Book.findByIdAndDelete(req.params.id)
-    res.status(204).end()
+    await Book.findByIdAndDelete(req.params.id);
+    res.status(204).end();
   } else {
-    return res.status(404).json({ error: `book doesn't exist` })
+    res.status(404).json({ error: 'book does not exist' });
   }
-})
+});
 
-export default booksRouter
+export default booksRouter;

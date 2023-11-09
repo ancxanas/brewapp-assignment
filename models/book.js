@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const bookSchema = mongoose.Schema({
   title: {
@@ -13,14 +13,14 @@ const bookSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
 bookSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id
-    delete returnedObject._id
-    delete returnedObject.__v
+    returnedObject.id = returnedObject._id;
+    delete returnedObject._id;
+    delete returnedObject.__v;
   },
-})
+});
 
-export default mongoose.model('Book', bookSchema)
+export default mongoose.model('Book', bookSchema);

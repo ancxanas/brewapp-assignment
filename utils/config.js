@@ -1,6 +1,3 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
-const PORT = process.env.PORT || 3000
-const MONGODB_URI = process.env.MONGODB_URI
-
-export { PORT, MONGODB_URI }
+export const { MONGODB_URI, PORT } = process.env;

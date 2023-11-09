@@ -34,6 +34,6 @@ const books = [
     summary:
       "In the dystopian Oceania of 1984, Big Brother, the omnipresent Party, and the Thought Police watch every citizen's move. Winston Smith, a low-ranking member of the Party, works for the Thought Police, rewriting history to fit the Party's narrative. Winston secretly rebels against the Party, but his actions are soon discovered.",
   },
-]
+];
 
-export default books
+export default books;

@@ -1,17 +1,19 @@
+import { info } from './logger';
+
 const unknownEndpoint = (req, res) => {
-  res.status(404).json({ error: 'unknown endpoint' })
-}
+  res.status(404).json({ error: 'unknown endpoint' });
+};
 
 const errorHandler = (err, req, res, next) => {
-  console.log(err.message, err)
+  info(err.message, err);
 
   if (err.name === 'CastError') {
-    return res.status(400).json({ error: 'malformatted id' })
+    res.status(400).json({ error: 'malformatted id' });
   } else if (err.name === 'ValidationError') {
-    return res.status(400).json({ error: err.message })
+    res.status(400).json({ error: err.message });
   }
 
-  next()
-}
+  next();
+};
 
-export { unknownEndpoint, errorHandler }
+export { unknownEndpoint, errorHandler };
