@@ -22,6 +22,14 @@ booksRouter.get('/:id', async (req, res) => {
 booksRouter.post('/', async (req, res) => {
   const { title, author, summary } = req.body;
 
+  const bookExists = await Book.findOne({ title, author });
+
+  if (bookExists) {
+    return res
+      .status(409)
+      .json({ error: 'A book with the title and author already exists' });
+  }
+
   const book = new Book({
     title,
     author,
@@ -30,7 +38,7 @@ booksRouter.post('/', async (req, res) => {
 
   const savedBook = await book.save();
 
-  res.status(201).json(savedBook);
+  return res.status(201).json(savedBook);
 });
 
 booksRouter.put('/:id', async (req, res) => {
