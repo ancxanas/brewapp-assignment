@@ -1,11 +1,11 @@
 import { info } from './logger';
 
-const unknownEndpoint = (req, res) => {
+const unknownEndpoint = (_req, res) => {
   res.status(404).json({ error: 'unknown endpoint' });
 };
 
-const errorHandler = (err, req, res, next) => {
-  info(err.message, err);
+const errorHandler = (err, _req, res, next) => {
+  info(err.message);
 
   if (err.name === 'CastError') {
     res.status(400).json({ error: 'malformatted id' });
